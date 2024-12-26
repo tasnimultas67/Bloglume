@@ -27,13 +27,11 @@ const Footer = () => {
             </Link>
           </li>
           <li>
-            <Link href="#" className="hover:underline me-4 md:me-6">
+            <Link
+              href="/privacypolicy"
+              className="hover:underline me-4 md:me-6"
+            >
               Privacy Policy
-            </Link>
-          </li>
-          <li>
-            <Link href="#" className="hover:underline me-4 md:me-6">
-              Licensing
             </Link>
           </li>
           <li>
