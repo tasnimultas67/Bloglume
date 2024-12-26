@@ -33,17 +33,34 @@ export default function Header() {
   return (
     <div
       className={`${
-        scroll ? "bg-white sticky border-b " : "bg-transparent absolute"
-      }  top-0 z-[200] inset-x-0 transition-all`}
+        scroll ? "bg-white border-b " : "bg-transparent "
+      }  fixed top-0 transition-all w-full z-[200]`}
     >
-      <header className="">
+      <header
+        className={`${scroll ? "bg-white" : ""}absolute top-0 inset-x-0 `}
+      >
         <nav
           aria-label="Global"
           className="flex items-center justify-between p-4 lg:px-8"
         >
           <div className="flex lg:flex-1">
-            <Link href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">BlogLume</span>
+            <Link
+              href="/"
+              className="-m-1.5 p-1.5 flex items-center justify-start gap-1"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                className="size-6"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M3 6a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3V6ZM3 15.75a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.25Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3v-2.25Z"
+                  clipRule="evenodd"
+                />
+              </svg>
+
               <h4 className="font-bold text-xl">BlogLume</h4>
             </Link>
           </div>
@@ -82,10 +99,23 @@ export default function Header() {
           <div className="fixed inset-0 z-50" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
             <div className="flex items-center justify-between">
-              <a href="#" className="-m-1.5 p-1.5">
+              <Link href="#" className="-m-1.5 p-1.5 flex items-center gap-1">
                 <span className="sr-only">BlogLume</span>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    fillRule="evenodd"
+                    d="M3 6a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3v2.25a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3V6ZM3 15.75a3 3 0 0 1 3-3h2.25a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3v-2.25Zm9.75 0a3 3 0 0 1 3-3H18a3 3 0 0 1 3 3V18a3 3 0 0 1-3 3h-2.25a3 3 0 0 1-3-3v-2.25Z"
+                    clipRule="evenodd"
+                  />
+                </svg>
+
                 <h4 className="font-bold text-xl">BlogLume</h4>
-              </a>
+              </Link>
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(false)}
