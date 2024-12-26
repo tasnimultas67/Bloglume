@@ -19,7 +19,7 @@ export async function generateMetadata({ params }) {
     };
   }
   return {
-    title: `${post.title ? post.title : post.title} — Tasnimul Haque`,
+    title: `${post.title ? post.title : "BlogLume"} — BlogLume`,
     description: post.body.substring(0, 150),
   };
 }
