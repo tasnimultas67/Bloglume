@@ -10,6 +10,20 @@ async function fetchPost(id) {
   return res.json();
 }
 
+export async function generateMetadata({ params }) {
+  const post = await fetchPost(params.id);
+  if (!post) {
+    return {
+      title: "Post Not Found",
+      description: "The requested Post could not be found",
+    };
+  }
+  return {
+    title: `${post.title ? post.title : post.title} — Tasnimul Haque`,
+    description: post.body.substring(0, 150),
+  };
+}
+
 const page = async ({ params }) => {
   const post = await fetchPost(params.id);
   if (!post) {

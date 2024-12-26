@@ -1,6 +1,12 @@
 import Blogs from "@/components/BlogsComponents/Blogs";
 import React from "react";
 
+export const metadata = {
+  title: "Blogs — BlogLume",
+  description:
+    ": Your go-to destination for the latest news and insightful blogs. At BlogLume, we illuminate every corner of the world with our comprehensive coverage and thought-provoking articles. Stay informed and inspired with our diverse range of topics, from current events to lifestyle tips.",
+};
+
 async function fetchPosts() {
   try {
     const res = await fetch("https://dummyjson.com/posts");
