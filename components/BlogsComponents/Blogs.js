@@ -113,11 +113,17 @@ const Blogs = ({ postsData }) => {
           <div className="" key={post.id}>
             <div className="group relative block rounded-xl focus:outline-none">
               {/* Blog Featured Image */}
-              <div className="shrink-0 relative rounded-xl overflow-hidden w-full h-[300px] md:h-[400px] before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900">
+              <div
+                className={`${
+                  viewType === "single"
+                    ? "h-[70px] md:h-[130px]"
+                    : "h-[300px] md:h-[400px]"
+                } shrink-0 relative rounded-xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
+              >
                 <Image
                   width={500}
                   height={500}
-                  className="absolute top-0 left-0 object-cover h-full m-auto group-hover:scale-110 transition"
+                  className="absolute top-0 left-0 w-full object-cover h-full m-auto group-hover:scale-110 transition"
                   src={`https://images.unsplash.com/photo-1510861320402-285a6c7639ea?q=80&w=1928&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
                   alt="Blog Image"
                 />
