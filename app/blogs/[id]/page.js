@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { notFound } from "next/navigation";
 import React from "react";
 
 async function fetchPost(id) {
