@@ -16,10 +16,10 @@ const page = async ({ params }) => {
   }
   return (
     <>
-      <div className="py-32 space-y-10">
+      <div className="py-24 md:py-32 space-y-10">
         {/* Titles & Meta Info */}
-        <div className="text-center space-y-2 w-8/12 m-auto">
-          <h1 className="text-4xl font-semibold">{post.title}</h1>
+        <div className="text-center space-y-2 w-11/12 md:w-8/12 m-auto">
+          <h1 className="text-4xl md:text-6xl font-semibold">{post.title}</h1>
           <ul className="flex items-center justify-center gap-2">
             {post.tags.map((tag) => (
               <li
@@ -30,6 +30,7 @@ const page = async ({ params }) => {
               </li>
             ))}
           </ul>
+          <p className="text-sm pt-5">{post.body}</p>
         </div>
         {/* Featured Image */}
         <div className="w-full">

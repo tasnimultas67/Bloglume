@@ -23,8 +23,8 @@ export default async function Blogs() {
     <div className="bg-white py-14 sm:py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="m-auto max-w-2xl text-center">
-          <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
-            From the blog
+          <h2 className="text-pretty text-4xl font-semibold sm:leading-tight text-gray-900 sm:text-6xl">
+            Adapting and Thriving in a Changing World
           </h2>
           <p className="mt-2 text-lg/8 text-gray-600">
             Learn how to grow your business with our expert advice.

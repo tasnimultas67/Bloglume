@@ -1,10 +1,25 @@
 import Blogs from "@/components/HomeComponents/Blogs";
-import Image from "next/image";
+import ListBlog from "@/components/HomeComponents/ListBlog";
 
-export default function Home() {
+async function fetchPosts() {
+  try {
+    const res = await fetch("https://dummyjson.com/posts");
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
+    const posts = await res.json();
+    return posts;
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    return [];
+  }
+}
+
+export default async function Home() {
+  const postsData = await fetchPosts();
   return (
     <>
-      <div className="relative isolate px-6 lg:px-8 flex items-center justify-center h-screen">
+      <div className="relative isolate px-6 lg:px-8 flex items-center justify-center h-screen border-b">
         <div>
           <div
             aria-hidden="true"
@@ -52,6 +67,18 @@ export default function Home() {
         </div>
       </div>
       <Blogs />
+      <section className="bg-[#f9f9fb] py-20">
+        <div className="w-11/12 m-auto space-y-20">
+          <h2 className="text-5xl/tight font-medium w-7/12 m-auto text-center">
+            Insights, Thoughts, Industry Trends, Marketing Tips
+          </h2>
+          <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+            {postsData.posts.slice(0, 4).map((post) => (
+              <ListBlog key={post.id} post={post} />
+            ))}
+          </div>
+        </div>
+      </section>
     </>
   );
 }
