@@ -73,7 +73,7 @@ const Blogs = ({ postsData }) => {
   const paginationButtons = generatePaginationButtons();
 
   return (
-    <section className="pb-24 space-y-3">
+    <section className="pb-24 space-y-7">
       {/* View Button */}
       <div className="flex justify-end items-center m-auto gap-2">
         <button
@@ -116,7 +116,7 @@ const Blogs = ({ postsData }) => {
               <div
                 className={`${
                   viewType === "single"
-                    ? "h-[70px] md:h-[130px]"
+                    ? "h-[100px] md:h-[130px]"
                     : "h-[300px] md:h-[400px]"
                 } shrink-0 relative rounded-xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
               >
@@ -149,7 +149,11 @@ const Blogs = ({ postsData }) => {
                   </div>
                 </div>
                 <div className="group relative">
-                  <h3 className="text-white font-semibold text-2xl line-clamp-2">
+                  <h3
+                    className={`${
+                      viewType === "single" ? "line-clamp-1" : "line-clamp-2"
+                    } text-white font-semibold text-2xl `}
+                  >
                     <Link href={`/blogs/${post.id}`}>{post.title}</Link>
                   </h3>
                 </div>
@@ -159,7 +163,7 @@ const Blogs = ({ postsData }) => {
         ))}
       </div>
       {/* Pagination */}
-      <div className="flex justify-center items-center mt-4">
+      <div className="flex justify-center items-center">
         {currentPage > 1 && (
           <button
             className="mx-1 px-2.5 py-1 border rounded text-sm dark:text-white"
