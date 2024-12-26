@@ -73,7 +73,7 @@ const Blogs = ({ postsData }) => {
   const paginationButtons = generatePaginationButtons();
 
   return (
-    <section className="pb-24 space-y-7">
+    <section className="space-y-7">
       {/* View Button */}
       <div className="flex justify-end items-center m-auto gap-2">
         <button
