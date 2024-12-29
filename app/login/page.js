@@ -10,8 +10,8 @@ export default function page() {
             className="h-[100dvh] object-cover w-full"
             src="https://images.unsplash.com/photo-1697985189201-293f0ddfc36d?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Login"
-            width={1920}
-            height={1080}
+            width={1000}
+            height={1000}
             priority={true}
           />
         </div>
