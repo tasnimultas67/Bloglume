@@ -60,7 +60,9 @@ export default function Header() {
                 />
               </svg>
 
-              <h4 className="font-bold text-xl">BlogLume</h4>
+              <h4 className="font-bold text-xl">
+                Blog<span className="text-themeColor2">Lume</span>
+              </h4>
             </Link>
           </div>
           <div className="flex lg:hidden">
