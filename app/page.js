@@ -33,7 +33,7 @@ export default async function Home() {
               className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
             />
           </div>
-          <div className="mx-auto max-w-2xl ">
+          <div className="mx-auto max-w-3xl ">
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">
               <div className="relative rounded-full px-3 py-1 text-sm/6 text-gray-600 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
                 Announcing our next round of funding.{" "}
@@ -45,11 +45,15 @@ export default async function Home() {
             </div>
             <div className="text-center">
               <h1 className="text-balance text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl">
-                Data to enrich your online business
+                Your Gateway to Expert Advice and Inspiration
               </h1>
-              <p className="mt-8 text-pretty text-lg font-medium text-gray-500 sm:text-xl/8">
-                Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui
-                lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat.
+              <p className="mt-8 text-pretty text-base font-medium text-gray-500">
+                Dive into a world of insightful blogs, expert tips, and
+                inspiring stories that will elevate your knowledge and spark
+                your creativity. Whether you're seeking guidance, fresh ideas,
+                or just a dose of motivation, we've got you covered. Join our
+                community and unlock the potential to thrive in every aspect of
+                your life
               </p>
               <div className="mt-10 flex items-center justify-center gap-x-6">
                 <a
