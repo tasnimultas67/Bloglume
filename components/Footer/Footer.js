@@ -92,13 +92,9 @@ const Footer = () => {
           </div>
         </div>
         {/* Bottom nav*/}
-        <div className="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-          <span className="text-sm text-gray-500 sm:text-center dark:text-gray-400 flex items-center justify-center gap-1">
-            © {currentYear}
-            <Link href="/" className="hover:underline">
-              BlogLume.
-            </Link>
-            All Rights Reserved. Developed by
+        <div className="w-full py-3 mx-auto max-w-screen-xl md:flex md:items-center md:justify-between">
+          <div className="text-sm text-gray-500 sm:text-center dark:text-gray-400 flex items-center justify-center gap-1">
+            © {currentYear} BlogLume. All Rights Reserved. Developed by
             <Link
               href="https://tasnimul.vercel.app/"
               target="_blank"
@@ -106,7 +102,7 @@ const Footer = () => {
             >
               Tasnimul Haque
             </Link>
-          </span>
+          </div>
           <ul className="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
             <li>
               <Link href="#" className="hover:underline me-4 md:me-6">
