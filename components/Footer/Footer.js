@@ -64,9 +64,9 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          {/* Company Information Menu */}
+          {/* Categories */}
           <div className="space-y-3 pt-2 md:pt-0">
-            <h3 className="text-base font-semibold text-white">Company</h3>
+            <h3 className="text-base font-semibold text-white">Categories</h3>
             <div>
               {companies.map((company) => (
                 <div key={company.name}>
@@ -77,9 +77,9 @@ const Footer = () => {
               ))}
             </div>
           </div>
-          {/* Company Information Menu */}
+          {/* Latest Blog */}
           <div className="space-y-3 pt-2 md:pt-0">
-            <h3 className="text-base font-semibold text-white">Company</h3>
+            <h3 className="text-base font-semibold text-white">Latest Blog</h3>
             <div>
               {companies.map((company) => (
                 <div key={company.name}>
