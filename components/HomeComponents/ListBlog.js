@@ -22,7 +22,7 @@ const ListBlog = ({ post }) => {
         </h3>
         <p className="line-clamp-2 text-sm text-gray-600">{post.body}</p>
         <Link href={`/blogs/${post.id}`}>
-          <button className="bg-black rounded-md text-gray-200 text-xs py-1.5 px-3">
+          <button className="bg-black group-hover/listCard:bg-themeColor2 rounded-md text-gray-200 text-xs py-1.5 px-3">
             Read More
           </button>
         </Link>
