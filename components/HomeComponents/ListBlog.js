@@ -4,11 +4,11 @@ import React from "react";
 
 const ListBlog = ({ post }) => {
   return (
-    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
+    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 group/listCard hover:bg-gray-100 border border-transparent hover:border-gray-200 rounded-lg">
       {/* Featured Image */}
       <div>
         <Image
-          className="rounded-lg h-56 w-full object-cover"
+          className="rounded-lg group-hover/listCard:rounded-tl-lg group-hover/listCard:rounded-bl-lg group-hover/listCard:rounded-tr-none   group-hover/listCard:rounded-br-none h-56 w-full object-cover"
           width={500}
           height={300}
           alt=""
