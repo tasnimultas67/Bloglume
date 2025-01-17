@@ -51,7 +51,8 @@ const Footer = () => {
               </p>
             </div>
             {/* Social Media Logos */}
-            <div>
+            <div className="space-y-3">
+              <h3 className="text-white text-sm font-semibold">Follow us on</h3>
               <div className="flex items-center gap-2">
                 {/* Facebook Link */}
                 <Link href="#">
