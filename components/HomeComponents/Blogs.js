@@ -1,3 +1,4 @@
+import { Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,10 +31,10 @@ export default async function Blogs() {
             Learn how to grow your business with our expert advice.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-3 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-          {postsData.posts.slice(0, 5).map((post, index) => (
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-3 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+          {postsData.posts.slice(0, 6).map((post, index) => (
             <div
-              className={`${index === 0 ? "md:col-span-4" : ""}`}
+              className={`${index === 0 ? "md:col-span-5" : ""}`}
               key={post.id}
             >
               <div className="group relative block rounded-xl focus:outline-none">
@@ -41,8 +42,8 @@ export default async function Blogs() {
                 <div
                   className={`${
                     index === 0
-                      ? "h-[300px] md:h-[430px]"
-                      : "h-[300px] md:h-[300px]"
+                      ? "h-[250px] md:h-[430px]"
+                      : "h-[250px] md:h-[240px]"
                   } shrink-0 relative rounded-xl overflow-hidden w-full  before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
                 >
                   <Image
@@ -55,8 +56,21 @@ export default async function Blogs() {
                 </div>
                 {/* Blog Information */}
                 <div className="flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full p-2 md:p-4 inset-x-0 z-10 space-y-2">
-                  <div className="flex items-center gap-x-4 text-xs">
-                    <time className="text-gray-200">28 Mar 2020</time>
+                  <div
+                    className={`${
+                      index === 0
+                        ? "grid-cols-2 gap-x-1"
+                        : "grid-cols-1 gap-y-2"
+                    } grid items-center text-xs`}
+                  >
+                    <time
+                      className={`${
+                        index === 0 ? " block" : "hidden"
+                      } text-gray-200 flex items-center justify-start gap-2`}
+                    >
+                      <Calendar className="size-4" />
+                      28 Mar 2020
+                    </time>
                     {/* Author Information */}
                     <div className="relative flex items-center gap-x-2">
                       <Image
