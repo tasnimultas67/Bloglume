@@ -44,7 +44,7 @@ export default async function Blogs() {
                 <div
                   className={`${
                     index === 0
-                      ? "h-[250px] md:h-[430px]"
+                      ? "h-[250px] md:h-[420px]"
                       : "h-[170px] md:h-[200px]"
                   } shrink-0 relative rounded-xl overflow-hidden w-full  before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
                 >
