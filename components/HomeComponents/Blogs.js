@@ -31,10 +31,10 @@ export default async function Blogs() {
             Learn how to grow your business with our expert advice.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-2 lg:mx-0 lg:max-w-none lg:grid-cols-6">
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-2 lg:mx-0 lg:max-w-none md:grid-cols-6">
           {postsData.posts.slice(0, 7).map((post, index) => (
             <div
-              className={`${index === 0 ? "md:col-span-6" : ""}`}
+              className={`${index === 0 ? "md:col-span-6 col-span-2" : ""}`}
               key={post.id}
             >
               <div className="group relative block rounded-xl focus:outline-none">
@@ -43,7 +43,7 @@ export default async function Blogs() {
                   className={`${
                     index === 0
                       ? "h-[250px] md:h-[430px]"
-                      : "h-[250px] md:h-[200px]"
+                      : "h-[170px] md:h-[200px]"
                   } shrink-0 relative rounded-xl overflow-hidden w-full  before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
                 >
                   <Image
@@ -57,7 +57,7 @@ export default async function Blogs() {
                 {/* Blog Information */}
                 <div
                   className={`${
-                    index === 0 ? "p-2 md:p-5" : "p-2 md:p-3.5"
+                    index === 0 ? "p-3 md:p-5" : "p-3 md:p-3.5"
                   } flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full inset-x-0 z-10 space-y-2`}
                 >
                   <div
