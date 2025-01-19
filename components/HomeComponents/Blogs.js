@@ -31,10 +31,10 @@ export default async function Blogs() {
             Learn how to grow your business with our expert advice.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-3 lg:mx-0 lg:max-w-none lg:grid-cols-5">
-          {postsData.posts.slice(0, 6).map((post, index) => (
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-2 lg:mx-0 lg:max-w-none lg:grid-cols-6">
+          {postsData.posts.slice(0, 7).map((post, index) => (
             <div
-              className={`${index === 0 ? "md:col-span-5" : ""}`}
+              className={`${index === 0 ? "md:col-span-6" : ""}`}
               key={post.id}
             >
               <div className="group relative block rounded-xl focus:outline-none">
@@ -43,7 +43,7 @@ export default async function Blogs() {
                   className={`${
                     index === 0
                       ? "h-[250px] md:h-[430px]"
-                      : "h-[250px] md:h-[240px]"
+                      : "h-[250px] md:h-[200px]"
                   } shrink-0 relative rounded-xl overflow-hidden w-full  before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
                 >
                   <Image
@@ -55,7 +55,11 @@ export default async function Blogs() {
                   />
                 </div>
                 {/* Blog Information */}
-                <div className="flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full p-2 md:p-4 inset-x-0 z-10 space-y-2">
+                <div
+                  className={`${
+                    index === 0 ? "p-2 md:p-5" : "p-2 md:p-3.5"
+                  } flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full inset-x-0 z-10 space-y-2`}
+                >
                   <div
                     className={`${
                       index === 0
@@ -90,8 +94,10 @@ export default async function Blogs() {
                   <div className="group relative">
                     <h3
                       className={`${
-                        index === 0 ? "text-2xl md:text-6xl" : "text-xl"
-                      } text-white font-semibold line-clamp-2`}
+                        index === 0
+                          ? "text-2xl md:text-6xl font-semibold"
+                          : "text-lg/6 font-medium"
+                      } text-white  line-clamp-2`}
                     >
                       <Link href={`/blogs/${post.id}`}>{post.title}</Link>
                     </h3>
