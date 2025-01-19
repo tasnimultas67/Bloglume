@@ -32,9 +32,11 @@ export default async function Blogs() {
           </p>
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-2 lg:mx-0 lg:max-w-none md:grid-cols-6">
-          {postsData.posts.slice(0, 7).map((post, index) => (
+          {postsData.posts.slice(0, 9).map((post, index) => (
             <div
-              className={`${index === 0 ? "md:col-span-6 col-span-2" : ""}`}
+              className={`${
+                index === 0 ? "md:col-span-5 row-span-2 col-span-2" : ""
+              }`}
               key={post.id}
             >
               <div className="group relative block rounded-xl focus:outline-none">
