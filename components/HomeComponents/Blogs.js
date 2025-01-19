@@ -54,7 +54,7 @@ export default async function Blogs() {
                   />
                 </div>
                 {/* Blog Information */}
-                <div className="flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full p-6 inset-x-0 z-10 space-y-2">
+                <div className="flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full p-2 md:p-4 inset-x-0 z-10 space-y-2">
                   <div className="flex items-center gap-x-4 text-xs">
                     <time className="text-gray-200">28 Mar 2020</time>
                     {/* Author Information */}
@@ -76,7 +76,7 @@ export default async function Blogs() {
                   <div className="group relative">
                     <h3
                       className={`${
-                        index === 0 ? "text-2xl md:text-6xl" : "text-2xl"
+                        index === 0 ? "text-2xl md:text-6xl" : "text-xl"
                       } text-white font-semibold line-clamp-2`}
                     >
                       <Link href={`/blogs/${post.id}`}>{post.title}</Link>
