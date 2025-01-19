@@ -15,9 +15,9 @@ const Footer = () => {
     <footer className="bg-gradient-to-t from-themeColor to-themeColor2 pt-14">
       <div className="w-11/12 m-auto divide-y divide-white/30 space-y-8 md:space-y-16">
         {/* Main Information Footer */}
-        <div className="grid grid-cols-1 md:grid-cols-5 gap-3 md:gap-6 divide-y divide-white/30 md:divide-y-0">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-6 divide-y divide-white/30 md:divide-y-0">
           {/* Logo and company information */}
-          <div className="md:col-span-2 space-y-3">
+          <div className="col-span-2 space-y-3">
             <div className="flex lg:flex-1">
               <Link
                 href="/"
