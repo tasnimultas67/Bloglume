@@ -30,22 +30,31 @@ export default async function Blogs() {
             Learn how to grow your business with our expert advice.
           </p>
         </div>
-        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-x-5 gap-y-16 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-          {postsData.posts.slice(0, 3).map((post) => (
-            <div className="" key={post.id}>
+        <div className="mx-auto mt-10 grid max-w-2xl grid-cols-1 gap-3 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+          {postsData.posts.slice(0, 5).map((post, index) => (
+            <div
+              className={`${index === 0 ? "md:col-span-4" : ""}`}
+              key={post.id}
+            >
               <div className="group relative block rounded-xl focus:outline-none">
                 {/* Blog Featured Image */}
-                <div className="shrink-0 relative rounded-xl overflow-hidden w-full h-[300px] md:h-[400px] before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900">
+                <div
+                  className={`${
+                    index === 0
+                      ? "h-[300px] md:h-[430px]"
+                      : "h-[300px] md:h-[300px]"
+                  } shrink-0 relative rounded-xl overflow-hidden w-full  before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
+                >
                   <Image
                     width={500}
                     height={500}
-                    className="absolute top-0 left-0 object-cover h-full m-auto group-hover:scale-110 transition"
+                    className="absolute top-0 left-0 object-cover w-full h-full m-auto group-hover:scale-110 transition"
                     src={`https://images.unsplash.com/photo-1510861320402-285a6c7639ea?q=80&w=1928&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
                     alt="Blog Image"
                   />
                 </div>
                 {/* Blog Information */}
-                <div className="flex max-w-xl flex-col items-start justify-between absolute bottom-0 left-0 w-full p-6 inset-x-0 z-10 space-y-2">
+                <div className="flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full p-6 inset-x-0 z-10 space-y-2">
                   <div className="flex items-center gap-x-4 text-xs">
                     <time className="text-gray-200">28 Mar 2020</time>
                     {/* Author Information */}
@@ -65,7 +74,11 @@ export default async function Blogs() {
                     </div>
                   </div>
                   <div className="group relative">
-                    <h3 className="text-white font-semibold text-2xl line-clamp-2">
+                    <h3
+                      className={`${
+                        index === 0 ? "text-2xl md:text-6xl" : "text-2xl"
+                      } text-white font-semibold line-clamp-2`}
+                    >
                       <Link href={`/blogs/${post.id}`}>{post.title}</Link>
                     </h3>
                   </div>
