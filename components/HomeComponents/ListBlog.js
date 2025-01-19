@@ -4,7 +4,7 @@ import React from "react";
 
 const ListBlog = ({ post }) => {
   return (
-    <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 group/listCard hover:bg-gray-100 border border-transparent hover:border-gray-200 rounded-lg">
+    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 group/listCard hover:bg-gray-100 border border-transparent hover:border-gray-200 rounded-lg">
       {/* Featured Image */}
       <div>
         <Image
@@ -16,7 +16,7 @@ const ListBlog = ({ post }) => {
         ></Image>
       </div>
       {/* blog information */}
-      <div className="flex items-start justify-center flex-col space-y-2">
+      <div className="flex items-start justify-center flex-col space-y-2 p-2">
         <h3 className="text-lg font-medium line-clamp-2 leading-tight">
           <Link href={`/blogs/${post.id}`}>{post.title}</Link>
         </h3>

@@ -72,8 +72,8 @@ export default async function Home() {
       </div>
       <Blogs />
       <section className="bg-[#f9f9fb] py-20">
-        <div className="w-11/12 m-auto space-y-20">
-          <h2 className="text-5xl/tight font-medium w-7/12 m-auto text-center">
+        <div className="w-11/12 m-auto md:space-x-10 space-y-7 md:space-y-20">
+          <h2 className="text-3xl md:text-5xl/tight font-medium w-full md:w-7/12 m-auto text-center">
             Insights, Thoughts, Industry Trends, Marketing Tips
           </h2>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
