@@ -22,7 +22,7 @@ export default async function Blogs() {
 
   return (
     <div className="bg-white py-14 sm:py-24">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto w-[97%]">
         <div className="m-auto max-w-2xl text-center">
           <h2 className="text-pretty text-4xl font-semibold sm:leading-tight text-gray-900 sm:text-6xl">
             Adapting and Thriving in a Changing World
