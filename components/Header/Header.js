@@ -31,7 +31,7 @@ export default function Header() {
 
   return (
     <div className={`bg-white sticky top-0 transition-all w-full z-[200] `}>
-      <header className={`relative top-0 inset-x-0 `}>
+      <header className={`relative top-0 inset-x-0 border-b`}>
         <nav
           aria-label="Global"
           className="flex items-center justify-between p-4 lg:px-8"
