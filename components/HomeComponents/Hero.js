@@ -55,14 +55,13 @@ const Hero = async () => {
                     index === 0 ? "grid-cols-2 gap-x-1" : "grid-cols-1 gap-y-2"
                   } grid items-center text-xs`}
                 >
-                  <time
-                    className={`${
-                      index === 0 ? "block" : "hidden"
-                    } text-gray-200 flex items-center justify-start gap-2`}
-                  >
-                    <Calendar className="size-4" />
-                    28 Mar 2020
-                  </time>
+                  <ul className="flex items-center justify-center gap-2">
+                    {post.tags.slice(0, 1).map((tag) => (
+                      <li className="text-xs/6 text-white" key={tag}>
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
                   {/* Author Information */}
                 </div>
                 <div className="group relative space-y-5">
@@ -86,13 +85,13 @@ const Hero = async () => {
                           <ArrowUpRight className="size-4"></ArrowUpRight>
                         </Link>
                       </div>
-                      <div className="relative flex items-center gap-x-2 border border-white rounded-full p-1 pr-3">
+                      <div className="relative flex items-center gap-x-2  rounded-full px-1 py-1 pr-3 backdrop-blur-2xl bg-white/10">
                         <Image
                           width={40}
                           height={40}
                           alt=""
                           src={`https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
-                          className="size-6 rounded-full bg-gray-50 object-cover"
+                          className="size-7 rounded-full bg-gray-50 object-cover"
                         />
                         <div className="text-sm/6">
                           <p className="font-medium text-gray-300">
