@@ -79,8 +79,8 @@ export default async function Home() {
             Insights, Thoughts, Industry Trends, Marketing Tips
           </h2>
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2">
-            {postsData.posts.slice(0, 4).map((post) => (
-              <ListBlog key={post.id} post={post} />
+            {postsData.posts.slice(0, 4).map((post, index) => (
+              <ListBlog key={post.id} post={post} index={index} />
             ))}
           </div>
         </div>
