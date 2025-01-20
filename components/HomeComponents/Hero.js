@@ -21,22 +21,20 @@ const Hero = async () => {
   const postsData = await fetchPosts();
   return (
     <div className="w-[98%] m-auto">
-      <div className="grid grid-cols-4 grid-rows-2 gap-2 grid-flow-col justify-stretch">
+      <div className="grid grid-cols-4 gap-2">
         {postsData.posts.slice(0, 3).map((post, index) => (
           <div
             className={`${
-              index === 0 ? "md:col-span-3 row-span-2 col-span-2" : ""
-            } justify-items-stretch`}
+              index === 0 ? "col-span-3 row-span-2" : "col-span-1"
+            }`}
             key={post.id}
           >
-            <div className="group relative block rounded-xl focus:outline-none">
+            <div className="group relative block rounded-xl focus:outline-none h-full">
               {/* Blog Featured Image */}
               <div
                 className={`${
-                  index === 0
-                    ? "h-[250px] md:h-[90dvh]"
-                    : "min-h-[170px] md:min-h-[200px] justify-items-stretch"
-                } shrink-0 relative rounded-xl overflow-hidden w-full  before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900 justify-items-stretch`}
+                  index === 0 ? "h-[90vh]" : "h-full"
+                } shrink-0 relative rounded-xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
               >
                 <Image
                   width={500}
@@ -59,7 +57,7 @@ const Hero = async () => {
                 >
                   <time
                     className={`${
-                      index === 0 ? " block" : "hidden"
+                      index === 0 ? "block" : "hidden"
                     } text-gray-200 flex items-center justify-start gap-2`}
                   >
                     <Calendar className="size-4" />
@@ -87,7 +85,7 @@ const Hero = async () => {
                       index === 0
                         ? "text-2xl md:text-6xl font-semibold"
                         : "text-lg/6 font-medium"
-                    } text-white  line-clamp-2`}
+                    } text-white line-clamp-2`}
                   >
                     <Link href={`/blogs/${post.id}`}>{post.title}</Link>
                   </h3>
