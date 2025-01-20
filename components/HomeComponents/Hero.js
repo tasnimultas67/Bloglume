@@ -57,7 +57,7 @@ const Hero = async () => {
                 >
                   <ul className="flex items-center justify-center gap-2">
                     {post.tags.slice(0, 1).map((tag) => (
-                      <li className="text-xs/6 text-white" key={tag}>
+                      <li className="text-xs/6 text-white capitalize" key={tag}>
                         {tag}
                       </li>
                     ))}
