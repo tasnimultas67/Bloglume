@@ -34,7 +34,7 @@ const Hero = async () => {
               <div
                 className={`${
                   index === 0 ? "h-[90vh]" : "h-full"
-                } shrink-0 relative rounded-xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
+                } shrink-0 relative rounded-3xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
               >
                 <Image
                   width={500}
