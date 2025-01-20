@@ -1,4 +1,5 @@
 import Blogs from "@/components/HomeComponents/Blogs";
+import Hero from "@/components/HomeComponents/Hero";
 import ListBlog from "@/components/HomeComponents/ListBlog";
 
 async function fetchPosts() {
@@ -19,7 +20,7 @@ export default async function Home() {
   const postsData = await fetchPosts();
   return (
     <>
-      <div className="relative isolate px-6 lg:px-8 flex items-center justify-center h-screen border-b">
+      {/* <div className="relative isolate px-6 lg:px-8 flex items-center justify-center h-screen border-b">
         <div>
           <div
             aria-hidden="true"
@@ -69,7 +70,8 @@ export default async function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
+      <Hero></Hero>
       <Blogs />
       <section className="bg-[#f9f9fb] py-20">
         <div className="w-11/12 m-auto md:space-x-10 space-y-7 md:space-y-20">

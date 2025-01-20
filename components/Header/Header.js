@@ -30,14 +30,8 @@ export default function Header() {
   }, []);
 
   return (
-    <div
-      className={`${
-        scroll ? "bg-white border-b " : "bg-transparent "
-      }  fixed top-0 transition-all w-full z-[200]`}
-    >
-      <header
-        className={`${scroll ? "bg-white" : ""}absolute top-0 inset-x-0 `}
-      >
+    <div className={`bg-white sticky top-0 transition-all w-full z-[200] `}>
+      <header className={`relative top-0 inset-x-0 `}>
         <nav
           aria-label="Global"
           className="flex items-center justify-between p-4 lg:px-8"
