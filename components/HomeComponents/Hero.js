@@ -47,7 +47,7 @@ const Hero = async () => {
               {/* Blog Information */}
               <div
                 className={`${
-                  index === 0 ? "p-3 md:p-5" : "p-3 md:p-3.5"
+                  index === 0 ? "p-3 md:p-8 md:pb-9" : "p-3 md:p-3.5"
                 } flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full inset-x-0 z-10 space-y-2`}
               >
                 <div
@@ -64,31 +64,43 @@ const Hero = async () => {
                     28 Mar 2020
                   </time>
                   {/* Author Information */}
-                  <div className="relative flex items-center gap-x-2">
-                    <Image
-                      width={40}
-                      height={40}
-                      alt=""
-                      src={`https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
-                      className="size-5 rounded-full bg-gray-50 object-cover"
-                    />
-                    <div className="text-sm/6">
-                      <p className="font-medium text-gray-300">
-                        Tasnimul Haque
-                      </p>
-                    </div>
-                  </div>
                 </div>
-                <div className="group relative">
+                <div className="group relative space-y-5">
                   <h3
                     className={`${
                       index === 0
-                        ? "text-2xl md:text-6xl font-semibold"
+                        ? "text-2xl md:text-8xl font-normal"
                         : "text-lg/6 font-medium"
                     } text-white line-clamp-2`}
                   >
                     <Link href={`/blogs/${post.id}`}>{post.title}</Link>
                   </h3>
+                  {index === 0 && (
+                    <div className="flex items-center justify-start gap-2">
+                      <div>
+                        <Link
+                          className="px-4 py-2 border text-sm border-white text-white rounded-full"
+                          href={`/blogs/${post.id}`}
+                        >
+                          Read Article
+                        </Link>
+                      </div>
+                      <div className="relative flex items-center gap-x-2 border border-white rounded-full p-1 pr-3">
+                        <Image
+                          width={40}
+                          height={40}
+                          alt=""
+                          src={`https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
+                          className="size-6 rounded-full bg-gray-50 object-cover"
+                        />
+                        <div className="text-sm/6">
+                          <p className="font-medium text-gray-300">
+                            Tasnimul Haque
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
