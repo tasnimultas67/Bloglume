@@ -1,4 +1,4 @@
-import { Calendar } from "lucide-react";
+import { ArrowUpRight, Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -79,10 +79,11 @@ const Hero = async () => {
                     <div className="flex items-center justify-start gap-2">
                       <div>
                         <Link
-                          className="px-4 py-2 border text-sm border-white text-white rounded-full"
+                          className="px-4 py-2 border text-sm border-white text-white rounded-full flex justify-start items-center gap-2"
                           href={`/blogs/${post.id}`}
                         >
-                          Read Article
+                          Read Article{" "}
+                          <ArrowUpRight className="size-4"></ArrowUpRight>
                         </Link>
                       </div>
                       <div className="relative flex items-center gap-x-2 border border-white rounded-full p-1 pr-3">
