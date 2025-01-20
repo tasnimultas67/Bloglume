@@ -56,13 +56,9 @@ const Hero = async () => {
               <div
                 className={`${
                   index === 0 ? "p-3 md:p-8 md:pb-9" : "p-3 md:p-3.5"
-                } flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full inset-x-0 z-10 space-y-2`}
+                } flex max-w-full flex-col items-start justify-between absolute bottom-0 left-0 w-full inset-x-0 z-10`}
               >
-                <div
-                  className={`${
-                    index === 0 ? "grid-cols-2 gap-x-1" : "grid-cols-1 gap-y-2"
-                  } grid items-center text-xs`}
-                >
+                <div className={`text-xs`}>
                   <ul className="flex items-center justify-center gap-2">
                     {post.tags.slice(0, 1).map((tag) => (
                       <li className="text-xs/6 text-white capitalize" key={tag}>
