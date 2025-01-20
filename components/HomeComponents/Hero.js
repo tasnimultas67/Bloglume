@@ -3,6 +3,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+const featuredPhotos = [
+  "https://images.unsplash.com/photo-1736297150541-89378f055b96?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1737069222401-afd3720775ae?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1584910308431-40e853627585?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  "https://images.unsplash.com/photo-1736296980768-e9d0db1b5e97?q=80&w=1772&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+];
+
 async function fetchPosts() {
   try {
     const res = await fetch("https://dummyjson.com/posts");
@@ -40,7 +47,8 @@ const Hero = async () => {
                   width={500}
                   height={500}
                   className="absolute top-0 left-0 object-cover w-full h-full m-auto group-hover:scale-110 transition"
-                  src={`https://images.unsplash.com/photo-1510861320402-285a6c7639ea?q=80&w=1928&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
+                  // Featured Photos will be here
+                  src={featuredPhotos[index]}
                   alt="Blog Image"
                 />
               </div>
