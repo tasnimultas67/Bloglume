@@ -106,7 +106,7 @@ const Blogs = ({ postsData }) => {
   const paginationButtons = generatePaginationButtons();
 
   return (
-    <section className="space-y-7">
+    <section className="space-y-7 pb-5 md:pb-0">
       {/* View Button */}
       <div className="flex justify-end items-center m-auto gap-2">
         <button
@@ -165,6 +165,16 @@ const Blogs = ({ postsData }) => {
                     }`}
                     alt="Blog Image"
                   />
+                </div>
+                {/* Blog Tags */}
+                <div className="absolute top-0 left-0 p-3">
+                  <ul className="flex items-center justify-center gap-2">
+                    {post.tags.slice(0, 1).map((tag) => (
+                      <li className="text-xs/6 text-white capitalize" key={tag}>
+                        {tag}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
                 {/* Blog Information */}
                 <div className="flex max-w-xl flex-col items-start justify-between absolute bottom-0 left-0 w-full p-6 inset-x-0 z-10 space-y-2">
