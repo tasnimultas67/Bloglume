@@ -140,7 +140,7 @@ const Blogs = ({ postsData }) => {
           viewType === "grid"
             ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             : "grid-cols-1"
-        } gap-3 m-auto`}
+        } gap-2 m-auto`}
       >
         {currentData.map((post, index) => {
           const photoIndex = (currentPage - 1) * itemsPerPage + index;
