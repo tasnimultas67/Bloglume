@@ -7,6 +7,25 @@ export const metadata = {
     ": Your go-to destination for the latest news and insightful blogs. At BlogLume, we illuminate every corner of the world with our comprehensive coverage and thought-provoking articles. Stay informed and inspired with our diverse range of topics, from current events to lifestyle tips.",
 };
 
+const offers = [
+  {
+    title: "Comprehensive Coverage",
+    des: "We bring you the latest news from around the globe, covering everything from politics and business to entertainment and sports.",
+  },
+  {
+    title: "Thought-Provoking Articles",
+    des: "Our blogs delve deep into various subjects, offering unique perspectives and in-depth analysis.",
+  },
+  {
+    title: "Lifestyle Tips",
+    des: "From health and wellness to travel and fashion, we provide practical advice to help you live your best life.",
+  },
+  {
+    title: "Community Engagement",
+    des: "We value our readers and encourage you to share your thoughts and ideas. Join the conversation and be a part of our growing community.",
+  },
+];
+
 const page = () => {
   return (
     <div className=" m-auto py-20">
@@ -63,6 +82,20 @@ const page = () => {
               by our commitment to quality content and our love for sharing
               stories that matter.
             </p>
+          </div>
+        </div>
+        <div className="w-11/12 m-auto space-y-5">
+          <h2 className="text-center text-3xl font-medium">What We Offer</h2>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
+            {offers.map((offer) => (
+              <div
+                key={offer.title}
+                className="p-5 py-10 bg-gray-100 rounded-2xl text-center space-y-3"
+              >
+                <h3 className="text-lg font-medium">{offer.title}</h3>
+                <p className="text-sm text-gray-600">{offer.des}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
