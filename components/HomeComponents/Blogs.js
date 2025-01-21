@@ -37,7 +37,7 @@ export default async function Blogs() {
     <div className="bg-white py-14 sm:py-24">
       <div className="mx-auto w-[97%]">
         <div className="m-auto max-w-2xl text-center">
-          <h2 className="text-pretty text-4xl font-semibold sm:leading-tight text-gray-900 sm:text-6xl">
+          <h2 className="text-pretty text-4xl font-semibold sm:leading-tight text-transparent bg-gradient-to-t from-themeColor2 to-themeColor sm:text-6xl bg-clip-text">
             Adapting and Thriving in a Changing World
           </h2>
           <p className="mt-2 text-lg/8 text-gray-600">
