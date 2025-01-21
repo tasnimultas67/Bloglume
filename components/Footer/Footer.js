@@ -9,7 +9,14 @@ const companies = [
   { name: "Privacy Policy", href: "/privacypolicy" },
 ];
 
-const Footer = () => {
+async function fetchPosts() {
+  const res = await fetch("https://dummyjson.com/posts");
+  const data = await res.json();
+  return data.posts;
+}
+
+const Footer = async () => {
+  const posts = await fetchPosts();
   const currentYear = new Date().getFullYear();
   return (
     <footer className="bg-gradient-to-t from-themeColor to-themeColor2 pt-14">
@@ -122,14 +129,20 @@ const Footer = () => {
           {/* Latest Blog */}
           <div className="space-y-3 pt-2 md:pt-0">
             <h3 className="text-base font-semibold text-white">Latest Blog</h3>
-            <div>
-              {companies.map((company) => (
-                <div key={company.name}>
-                  <Link href={company.href} className="text-gray-200 text-sm">
-                    {company.name}
-                  </Link>
-                </div>
-              ))}
+            <div className="space-y-1">
+              {posts
+                .slice(0, 6)
+                .reverse()
+                .map((post) => (
+                  <div key={post.id}>
+                    <Link
+                      href={`/blogs/${post.id}`}
+                      className="text-gray-200 text-sm line-clamp-1 hover:underline"
+                    >
+                      {post.title}
+                    </Link>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
