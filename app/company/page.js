@@ -29,7 +29,7 @@ const offers = [
 const page = () => {
   return (
     <div className=" m-auto py-20">
-      <div className="flex flex-col space-y-20 ">
+      <div className="flex flex-col space-y-20 w-11/12 m-auto">
         <div className="flex flex-col items-center space-y-2 md:space-y-4">
           <h1 className="text-5xl md:text-7xl font-bold">BlogLume</h1>
           <p className="text-gray-500">Illuminating the world with news</p>
@@ -61,7 +61,7 @@ const page = () => {
             there's something for everyone.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 w-11/12 m-auto items-center py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center py-10">
           <div>
             <Image
               className="rounded-2xl h-[20rem] md:h-[30rem] object-cover object-center"
@@ -84,7 +84,8 @@ const page = () => {
             </p>
           </div>
         </div>
-        <div className="w-11/12 m-auto space-y-5">
+        {/* What We Offer */}
+        <div className=" space-y-5">
           <h2 className="text-center text-3xl font-medium">What We Offer</h2>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-3">
             {offers.map((offer) => (
@@ -97,6 +98,38 @@ const page = () => {
               </div>
             ))}
           </div>
+        </div>
+        {/* Our Vision */}
+        <div className="grid grid-cols-1 md:grid-cols-2 items-center py-10 gap-5 content-between">
+          <div className="space-y-3">
+            <h3 className="text-2xl font-semibold tracking-tight">
+              Our Vision
+            </h3>
+            <p>
+              We envision a world where information is accessible to all, and
+              where diverse voices can come together to create a richer, more
+              informed society. At BlogLume, we are dedicated to fostering a
+              culture of curiosity, learning, and open dialogue.
+            </p>
+          </div>
+          <div className="ml-auto mr-0">
+            <Image
+              className="rounded-2xl h-[20rem] md:h-[30rem] object-cover object-center"
+              src="https://images.unsplash.com/photo-1712431028580-049087ee59d8?q=80&w=1952&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+              width={500}
+              height={700}
+              alt="About Us - BlogLume"
+            ></Image>
+          </div>
+        </div>
+        {/* Join Us */}
+        <div className="">
+          <p className="text-2xl text-center">
+            Whether you're here to stay updated on the latest news, find
+            inspiration, or share your own stories, BlogLume is your go-to
+            destination. Together, let's illuminate the world with knowledge and
+            creativity.
+          </p>
         </div>
       </div>
     </div>
