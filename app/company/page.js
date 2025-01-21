@@ -42,7 +42,7 @@ const page = () => {
             there's something for everyone.
           </p>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 w-11/12 m-auto items-center py-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 w-11/12 m-auto items-center py-10">
           <div>
             <Image
               className="rounded-2xl h-[20rem] md:h-[30rem] object-cover object-center"
@@ -52,7 +52,7 @@ const page = () => {
               alt="About Us - BlogLume"
             ></Image>
           </div>
-          <div className="space-y-5">
+          <div className="space-y-3">
             <h3 className="text-2xl font-semibold tracking-tight">Our Story</h3>
             <p>
               BlogLume was born out of a passion for storytelling and a desire
