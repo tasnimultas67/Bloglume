@@ -31,7 +31,7 @@ const page = async ({ params }) => {
   }
   return (
     <>
-      <div className="py-24 md:py-32 space-y-10">
+      <div className="py-7 md:py-12 space-y-10">
         {/* Titles & Meta Info */}
         <div className="text-center space-y-2 w-11/12 md:w-8/12 m-auto">
           <h1 className="text-4xl md:text-6xl font-semibold">{post.title}</h1>
