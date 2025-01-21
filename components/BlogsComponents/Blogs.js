@@ -140,7 +140,7 @@ const Blogs = ({ postsData }) => {
           viewType === "grid"
             ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
             : "grid-cols-1"
-        } gap-5 m-auto`}
+        } gap-3 m-auto`}
       >
         {currentData.map((post, index) => {
           const photoIndex = (currentPage - 1) * itemsPerPage + index;
@@ -153,7 +153,7 @@ const Blogs = ({ postsData }) => {
                     viewType === "single"
                       ? "h-[100px] md:h-[130px]"
                       : "h-[300px] md:h-[400px]"
-                  } shrink-0 relative rounded-xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
+                  } shrink-0 relative rounded-2xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
                 >
                   <Image
                     width={500}
