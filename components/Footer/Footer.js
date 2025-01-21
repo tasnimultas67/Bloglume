@@ -106,7 +106,10 @@ const Footer = async () => {
             <div>
               {companies.map((company) => (
                 <div key={company.name}>
-                  <Link href={company.href} className="text-gray-200 text-sm">
+                  <Link
+                    href={company.href}
+                    className="text-gray-200 text-sm hover:underline"
+                  >
                     {company.name}
                   </Link>
                 </div>
@@ -119,7 +122,10 @@ const Footer = async () => {
             <div>
               {companies.map((company) => (
                 <div key={company.name}>
-                  <Link href={company.href} className="text-gray-200 text-sm">
+                  <Link
+                    href={company.href}
+                    className="text-gray-200 text-sm hover:underline"
+                  >
                     {company.name}
                   </Link>
                 </div>
