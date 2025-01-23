@@ -40,7 +40,7 @@ const featuredPhotos = [
 const Blogs = ({ postsData }) => {
   const [viewType, setViewType] = useState("grid"); // Initial view type is 'grid'
   const [currentPage, setCurrentPage] = useState(1); // State for current page
-  const itemsPerPage = 6; // Number of items per page
+  const itemsPerPage = 9; // Number of items per page
 
   useEffect(() => {
     // Check local storage for saved view type on component mount
