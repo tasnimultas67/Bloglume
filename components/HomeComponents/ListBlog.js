@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import * as motion from "motion/react-client";
 
 const featuredPhotos = [
   "https://plus.unsplash.com/premium_photo-1661957705604-15f37be44856?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -15,7 +16,12 @@ const featuredPhotos = [
 
 const ListBlog = ({ post, index }) => {
   return (
-    <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 group/listCard hover:bg-gray-100 border border-transparent hover:border-gray-200 rounded-lg">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
+      className="grid grid-cols-1 gap-3 sm:grid-cols-2 group/listCard hover:bg-gray-100 border border-transparent hover:border-gray-200 rounded-lg"
+    >
       {/* Featured Image */}
       <div>
         <Image
@@ -38,7 +44,7 @@ const ListBlog = ({ post, index }) => {
           </button>
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
