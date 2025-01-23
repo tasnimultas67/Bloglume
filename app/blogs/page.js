@@ -1,5 +1,6 @@
 import Blogs from "@/components/BlogsComponents/Blogs";
 import React from "react";
+import * as motion from "motion/react-client";
 
 export const metadata = {
   title: "Blogs — BlogLume",
@@ -20,6 +21,18 @@ async function fetchPosts() {
     return [];
   }
 }
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.5,
+      ease: "easeInOut",
+      delay: 0.2,
+    },
+  },
+};
 
 const page = async () => {
   const postsData = await fetchPosts();
@@ -28,12 +41,22 @@ const page = async () => {
       <div className="bg-white pt-10 sm:pt-7 sm:pb-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0">
-            <h2 className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl">
+            <motion.h2
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              className="text-pretty text-4xl font-semibold tracking-tight text-gray-900 sm:text-5xl"
+            >
               From the blog
-            </h2>
-            <p className="mt-2 text-lg/8 text-gray-600">
+            </motion.h2>
+            <motion.p
+              variants={fadeInUp}
+              initial="hidden"
+              whileInView="visible"
+              className="mt-2 text-lg/8 text-gray-600"
+            >
               Learn how to grow your business with our expert advice.
-            </p>
+            </motion.p>
           </div>
           {/* Blogs */}
           <Blogs postsData={postsData} />
