@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import * as motion from "motion/react-client";
 
 export const metadata = {
   title: "Company — BlogLume",

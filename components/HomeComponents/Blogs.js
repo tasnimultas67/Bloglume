@@ -1,6 +1,7 @@
 import { Calendar } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import * as motion from "motion/react-client";
 
 const featuredPhotos = [
   "https://images.unsplash.com/photo-1532456452989-c21c6055c6c5?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -37,19 +38,32 @@ export default async function Blogs() {
     <div className="bg-white py-14 sm:py-24">
       <div className="mx-auto w-[97%]">
         <div className="m-auto max-w-2xl text-center">
-          <h2 className="text-pretty text-4xl font-semibold sm:leading-tight text-transparent bg-gradient-to-t from-themeColor2 to-themeColor sm:text-6xl bg-clip-text">
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
+            className="text-pretty text-4xl font-semibold sm:leading-tight text-transparent bg-gradient-to-t from-themeColor2 to-themeColor sm:text-6xl bg-clip-text"
+          >
             Adapting and Thriving in a Changing World
-          </h2>
-          <p className="mt-2 text-lg/8 text-gray-600">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
+            className="mt-2 text-lg/8 text-gray-600"
+          >
             Learn how to grow your business with our expert advice.
-          </p>
+          </motion.p>
         </div>
         <div className="mx-auto mt-10 grid max-w-2xl grid-cols-2 gap-2 lg:mx-0 lg:max-w-none md:grid-cols-6">
           {postsData.posts
             .slice(0, 9)
             .reverse()
             .map((post, index) => (
-              <div
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
                 className={`${
                   index === 0 ? "md:col-span-5 row-span-2 col-span-2" : ""
                 }`}
@@ -122,7 +136,7 @@ export default async function Blogs() {
                     </div>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             ))}
         </div>
       </div>
