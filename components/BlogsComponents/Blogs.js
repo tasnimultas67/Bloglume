@@ -130,7 +130,7 @@ const Blogs = ({ postsData }) => {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedTag("all")}
-            className={`px-3 py-1 rounded-xl text-xs/5 ${
+            className={`px-3 py-1 rounded-lg text-xs/5 ${
               selectedTag === "all"
                 ? "bg-black text-white"
                 : "bg-gray-100 hover:bg-gray-200"
@@ -142,7 +142,7 @@ const Blogs = ({ postsData }) => {
             <button
               key={tag}
               onClick={() => setSelectedTag(tag)}
-              className={`px-3 py-1 rounded-xl text-xs/5 capitalize ${
+              className={`px-3 py-1 rounded-lg text-xs/5 capitalize ${
                 selectedTag === tag
                   ? "bg-black text-white"
                   : "bg-gray-100 hover:bg-gray-200"
@@ -153,41 +153,44 @@ const Blogs = ({ postsData }) => {
           ))}
         </div>
 
-        <input
-          type="text"
-          placeholder="Search posts..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className="text-xs px-2 py-1 border rounded-md max-w-3xl focus:outline-none focus:ring-2 focus:ring-black"
-        />
-      </div>
-      {/* View Button */}
-      <div className="flex justify-end items-center m-auto gap-2">
-        <button
-          className={`hover:bg-gray-100 p-1 rounded group/grid-button border ${
-            viewType === "single" && "bg-gray-100"
-          }`}
-          onClick={handleSingleView}
-        >
-          <Menu
-            className={`size-4 text-gray-400 group-hover/grid-button:text-gray-500 ${
-              viewType === "single" && "text-gray-500"
-            }`}
+        <div className="flex items-center gap-2 justify-between">
+          <input
+            type="text"
+            placeholder="Search posts..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="text-xs px-2 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
           />
-        </button>
-        <button
-          className={`hover:bg-gray-100 p-1 rounded group/list-button border ${
-            viewType === "grid" && "bg-gray-100"
-          }`}
-          onClick={handleGridView}
-        >
-          <Grid3X3
-            className={`size-4 text-gray-400 group-hover/list-button:text-gray-500 ${
-              viewType === "grid" && "text-gray-500"
-            }`}
-          />
-        </button>
+          {/* View Button */}
+          <div className="flex justify-end items-center m-auto gap-2">
+            <button
+              className={`hover:bg-gray-100 p-1 rounded group/grid-button border ${
+                viewType === "single" && "bg-gray-100"
+              }`}
+              onClick={handleSingleView}
+            >
+              <Menu
+                className={`size-4 text-gray-400 group-hover/grid-button:text-gray-500 ${
+                  viewType === "single" && "text-gray-500"
+                }`}
+              />
+            </button>
+            <button
+              className={`hover:bg-gray-100 p-1 rounded group/list-button border ${
+                viewType === "grid" && "bg-gray-100"
+              }`}
+              onClick={handleGridView}
+            >
+              <Grid3X3
+                className={`size-4 text-gray-400 group-hover/list-button:text-gray-500 ${
+                  viewType === "grid" && "text-gray-500"
+                }`}
+              />
+            </button>
+          </div>
+        </div>
       </div>
+
       {/* Blogs Grid */}
       <div
         className={`grid ${
