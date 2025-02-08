@@ -40,7 +40,21 @@ const featuredPhotos = [
 const Blogs = ({ postsData }) => {
   const [viewType, setViewType] = useState("grid"); // Initial view type is 'grid'
   const [currentPage, setCurrentPage] = useState(1); // State for current page
-  const itemsPerPage = 9; // Number of items per page
+  const [selectedTag, setSelectedTag] = useState("all");
+  const [searchQuery, setSearchQuery] = useState("");
+  const itemsPerPage = 9;
+
+  // Get unique tags from all posts
+  const allTags = [...new Set(postsData.posts.flatMap((post) => post.tags))];
+
+  // Filter posts based on selected tag and search query
+  const filteredPosts = postsData.posts.filter((post) => {
+    const matchesTag = selectedTag === "all" || post.tags.includes(selectedTag);
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.body.toLowerCase().includes(searchQuery.toLowerCase());
+    return matchesTag && matchesSearch;
+  });
 
   useEffect(() => {
     // Check local storage for saved view type on component mount
@@ -49,6 +63,10 @@ const Blogs = ({ postsData }) => {
       setViewType(savedViewType);
     }
   }, []);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedTag, searchQuery]);
 
   // Single View Function
   const handleSingleView = () => {
@@ -107,6 +125,42 @@ const Blogs = ({ postsData }) => {
 
   return (
     <div className="space-y-7 pb-5 md:pb-0">
+      {/* Filter Controls */}
+      <div className="flex flex-col md:flex-row gap-4 justify-between">
+        <div className="flex flex-wrap gap-2">
+          <button
+            onClick={() => setSelectedTag("all")}
+            className={`px-3 py-1 rounded-xl text-xs/5 ${
+              selectedTag === "all"
+                ? "bg-black text-white"
+                : "bg-gray-100 hover:bg-gray-200"
+            }`}
+          >
+            All
+          </button>
+          {allTags.map((tag) => (
+            <button
+              key={tag}
+              onClick={() => setSelectedTag(tag)}
+              className={`px-3 py-1 rounded-xl text-xs/5 capitalize ${
+                selectedTag === tag
+                  ? "bg-black text-white"
+                  : "bg-gray-100 hover:bg-gray-200"
+              }`}
+            >
+              {tag}
+            </button>
+          ))}
+        </div>
+
+        <input
+          type="text"
+          placeholder="Search posts..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="text-xs px-2 py-1 border rounded-md max-w-3xl focus:outline-none focus:ring-2 focus:ring-black"
+        />
+      </div>
       {/* View Button */}
       <div className="flex justify-end items-center m-auto gap-2">
         <button
