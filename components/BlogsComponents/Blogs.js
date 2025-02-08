@@ -1,8 +1,8 @@
 "use client";
-import { Grid3X3, Menu } from "lucide-react";
+import { Grid3X3, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 
 const featuredPhotos = [
   "https://plus.unsplash.com/premium_photo-1661957705604-15f37be44856?q=80&w=1973&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
@@ -38,66 +38,57 @@ const featuredPhotos = [
 ];
 
 const Blogs = ({ postsData }) => {
-  const [viewType, setViewType] = useState("grid"); // Initial view type is 'grid'
-  const [currentPage, setCurrentPage] = useState(1); // State for current page
+  const [viewType, setViewType] = useState("grid");
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedTag, setSelectedTag] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const itemsPerPage = 9;
 
   // Get unique tags from all posts
-  const allTags = [...new Set(postsData.posts.flatMap((post) => post.tags))];
-
-  // Filter posts based on selected tag and search query
-  const filteredPosts = postsData.posts.filter((post) => {
-    const matchesTag = selectedTag === "all" || post.tags.includes(selectedTag);
-    const matchesSearch =
-      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.body.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesTag && matchesSearch;
-  });
-
-  useEffect(() => {
-    // Check local storage for saved view type on component mount
-    const savedViewType = localStorage.getItem("blogsViewType");
-    if (savedViewType) {
-      setViewType(savedViewType);
-    }
-  }, []);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedTag, searchQuery]);
-
-  // Single View Function
-  const handleSingleView = () => {
-    setViewType("single");
-    localStorage.setItem("blogsViewType", "single");
-  };
-  // Grid View Function
-  const handleGridView = () => {
-    setViewType("grid");
-    localStorage.setItem("blogsViewType", "grid");
-  };
-
-  // Calculate total pages
-  const totalPages = Math.ceil(postsData.posts.length / itemsPerPage);
-
-  // Slice the data to get the current page items
-  const currentData = postsData.posts.slice(
-    (currentPage - 1) * itemsPerPage,
-    currentPage * itemsPerPage
+  const allTags = useMemo(
+    () => [...new Set(postsData.posts.flatMap((post) => post.tags))],
+    [postsData.posts]
   );
 
+  // Filter posts based on selected tag and search query
+  const filteredPosts = useMemo(() => {
+    return postsData.posts.filter((post) => {
+      const matchesTag =
+        selectedTag === "all" || post.tags.includes(selectedTag);
+      const matchesSearch =
+        post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        post.body.toLowerCase().includes(searchQuery.toLowerCase());
+      return matchesTag && matchesSearch;
+    });
+  }, [postsData.posts, selectedTag, searchQuery]);
+
+  // Calculate total pages based on filtered posts
+  const totalPages = useMemo(
+    () => Math.ceil(filteredPosts.length / itemsPerPage),
+    [filteredPosts, itemsPerPage]
+  );
+
+  // Slice the data to get the current page items
+  const currentData = useMemo(() => {
+    return filteredPosts.slice(
+      (currentPage - 1) * itemsPerPage,
+      currentPage * itemsPerPage
+    );
+  }, [filteredPosts, currentPage, itemsPerPage]);
+
   // Handle page change
-  const handlePageChange = (pageNumber) => {
-    if (pageNumber >= 1 && pageNumber <= totalPages) {
-      setCurrentPage(pageNumber);
-      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll to top
-    }
-  };
+  const handlePageChange = useCallback(
+    (pageNumber) => {
+      if (pageNumber >= 1 && pageNumber <= totalPages) {
+        setCurrentPage(pageNumber);
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    },
+    [totalPages]
+  );
 
   // Generate pagination buttons
-  const generatePaginationButtons = () => {
+  const generatePaginationButtons = useCallback(() => {
     const buttons = [];
     if (totalPages <= 5) {
       for (let i = 1; i <= totalPages; i++) {
@@ -119,9 +110,36 @@ const Blogs = ({ postsData }) => {
       buttons.push(totalPages);
     }
     return buttons;
-  };
+  }, [currentPage, totalPages]);
 
   const paginationButtons = generatePaginationButtons();
+
+  // Reset to first page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedTag, searchQuery]);
+
+  // Save view type to localStorage
+  useEffect(() => {
+    const savedViewType = localStorage.getItem("blogsViewType");
+    if (savedViewType) {
+      setViewType(savedViewType);
+    }
+  }, []);
+
+  const handleSingleView = useCallback(() => {
+    setViewType("single");
+    localStorage.setItem("blogsViewType", "single");
+  }, []);
+
+  const handleGridView = useCallback(() => {
+    setViewType("grid");
+    localStorage.setItem("blogsViewType", "grid");
+  }, []);
+
+  const clearSearch = useCallback(() => {
+    setSearchQuery("");
+  }, []);
 
   return (
     <div className="space-y-7 pb-5 md:pb-0">
@@ -130,11 +148,12 @@ const Blogs = ({ postsData }) => {
         <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setSelectedTag("all")}
-            className={`px-3 py-1 rounded-lg text-xs/5 ${
+            className={`px-3 py-1 rounded-lg text-xs/5 transition-colors ${
               selectedTag === "all"
                 ? "bg-black text-white"
                 : "bg-gray-100 hover:bg-gray-200"
             }`}
+            aria-label="Show all posts"
           >
             All
           </button>
@@ -142,11 +161,12 @@ const Blogs = ({ postsData }) => {
             <button
               key={tag}
               onClick={() => setSelectedTag(tag)}
-              className={`px-3 py-1 rounded-lg text-xs/5 capitalize ${
+              className={`px-3 py-1 rounded-lg text-xs/5 capitalize transition-colors ${
                 selectedTag === tag
                   ? "bg-black text-white"
                   : "bg-gray-100 hover:bg-gray-200"
               }`}
+              aria-label={`Filter by ${tag}`}
             >
               {tag}
             </button>
@@ -154,20 +174,34 @@ const Blogs = ({ postsData }) => {
         </div>
 
         <div className="flex items-center gap-2 justify-between">
-          <input
-            type="text"
-            placeholder="Search posts..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="text-xs px-2 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-black"
-          />
+          {/* Search Form */}
+          <div className="relative flex items-center">
+            <input
+              type="text"
+              placeholder="Search posts..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="text-xs px-2 py-1 border rounded-md focus:outline-none focus:ring-2 focus:ring-black w-full"
+              aria-label="Search posts"
+            />
+            {searchQuery && (
+              <button
+                onClick={clearSearch}
+                className="absolute right-2 text-gray-500 hover:text-gray-700"
+                aria-label="Clear search"
+              >
+                <X className="size-4" />
+              </button>
+            )}
+          </div>
           {/* View Button */}
           <div className="flex justify-end items-center m-auto gap-2">
             <button
-              className={`hover:bg-gray-100 p-1 rounded group/grid-button border ${
+              className={`hover:bg-gray-100 p-1 rounded group/grid-button border transition-colors ${
                 viewType === "single" && "bg-gray-100"
               }`}
               onClick={handleSingleView}
+              aria-label="Switch to single view"
             >
               <Menu
                 className={`size-4 text-gray-400 group-hover/grid-button:text-gray-500 ${
@@ -176,10 +210,11 @@ const Blogs = ({ postsData }) => {
               />
             </button>
             <button
-              className={`hover:bg-gray-100 p-1 rounded group/list-button border ${
+              className={`hover:bg-gray-100 p-1 rounded group/list-button border transition-colors ${
                 viewType === "grid" && "bg-gray-100"
               }`}
               onClick={handleGridView}
+              aria-label="Switch to grid view"
             >
               <Grid3X3
                 className={`size-4 text-gray-400 group-hover/list-button:text-gray-500 ${
@@ -192,120 +227,137 @@ const Blogs = ({ postsData }) => {
       </div>
 
       {/* Blogs Grid */}
-      <div
-        className={`grid ${
-          viewType === "grid"
-            ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
-            : "grid-cols-1"
-        } gap-2 m-auto`}
-      >
-        {currentData.map((post, index) => {
-          const photoIndex = (currentPage - 1) * itemsPerPage + index;
-          return (
-            <div className="" key={post.id}>
-              <div className="group relative block rounded-xl focus:outline-none">
-                {/* Blog Featured Image */}
-                <div
-                  className={`${
-                    viewType === "single"
-                      ? "h-[100px] md:h-[130px]"
-                      : "h-[300px] md:h-[400px]"
-                  } shrink-0 relative rounded-2xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
-                >
-                  <Image
-                    width={500}
-                    height={500}
-                    className="absolute top-0 left-0 w-full object-cover h-full m-auto group-hover:scale-110 transition"
-                    src={`${
-                      featuredPhotos[photoIndex] ||
-                      "https://images.unsplash.com/photo-1510861320402-285a6c7639ea?q=80&w=1928&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                    }`}
-                    alt="Blog Image"
-                  />
-                </div>
-                {/* Blog Tags */}
-                <div className="absolute top-0 left-0 p-3">
-                  <ul className="flex items-center justify-center gap-2">
-                    {post.tags.slice(0, 1).map((tag) => (
-                      <li className="text-xs/6 text-white capitalize" key={tag}>
-                        {tag}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                {/* Blog Information */}
-                <div className="flex max-w-xl flex-col items-start justify-between absolute bottom-0 left-0 w-full p-6 inset-x-0 z-10 space-y-2">
-                  <div className="flex items-center gap-x-4 text-xs">
-                    <time className="text-gray-200">28 Mar 2020</time>
-                    {/* Author Information */}
-                    <div className="relative flex items-center gap-x-2">
+      {currentData.length === 0 ? (
+        <div className="text-center py-12 text-gray-500">
+          No posts found matching your criteria.
+        </div>
+      ) : (
+        <>
+          <div
+            className={`grid ${
+              viewType === "grid"
+                ? "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3"
+                : "grid-cols-1"
+            } gap-2 m-auto`}
+          >
+            {currentData.map((post, index) => {
+              const photoIndex = (currentPage - 1) * itemsPerPage + index;
+              return (
+                <div key={post.id}>
+                  <div className="group relative block rounded-xl focus:outline-none">
+                    {/* Blog Featured Image */}
+                    <div
+                      className={`${
+                        viewType === "single"
+                          ? "h-[100px] md:h-[130px]"
+                          : "h-[300px] md:h-[400px]"
+                      } shrink-0 relative rounded-2xl overflow-hidden w-full before:absolute before:inset-x-0 before:z-[1] before:size-full before:bg-gradient-to-t before:from-gray-900`}
+                    >
                       <Image
-                        width={40}
-                        height={40}
-                        alt=""
-                        src={`https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
-                        className="size-5 rounded-full bg-gray-50 object-cover"
+                        width={500}
+                        height={500}
+                        className="absolute top-0 left-0 w-full object-cover h-full m-auto group-hover:scale-110 transition-transform duration-300"
+                        src={`${
+                          featuredPhotos[photoIndex] ||
+                          "https://images.unsplash.com/photo-1510861320402-285a6c7639ea?q=80&w=1928&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        }`}
+                        alt={`Featured image for ${post.title}`}
                       />
-                      <div className="text-sm/6">
-                        <p className="font-medium text-gray-300">
-                          Tasnimul Haque
-                        </p>
+                    </div>
+                    {/* Blog Tags */}
+                    <div className="absolute top-0 left-0 p-3">
+                      <ul className="flex items-center justify-center gap-2">
+                        {post.tags.slice(0, 5).map((tag) => (
+                          <li
+                            className="text-xs/6 text-white capitalize"
+                            key={tag}
+                          >
+                            {tag},
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                    {/* Blog Information */}
+                    <div className="flex max-w-xl flex-col items-start justify-between absolute bottom-0 left-0 w-full p-6 inset-x-0 z-10 space-y-2">
+                      <div className="flex items-center gap-x-4 text-xs">
+                        <time className="text-gray-200">28 Mar 2020</time>
+                        {/* Author Information */}
+                        <div className="relative flex items-center gap-x-2">
+                          <Image
+                            width={40}
+                            height={40}
+                            alt="Author profile"
+                            src={`https://plus.unsplash.com/premium_photo-1689977927774-401b12d137d6?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D`}
+                            className="size-5 rounded-full bg-gray-50 object-cover"
+                          />
+                          <div className="text-sm/6">
+                            <p className="font-medium text-gray-300">
+                              Tasnimul Haque
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="group relative">
+                        <h3
+                          className={`${
+                            viewType === "single"
+                              ? "line-clamp-1"
+                              : "line-clamp-2"
+                          } text-white font-semibold text-2xl`}
+                        >
+                          <Link href={`/blogs/${post.id}`}>{post.title}</Link>
+                        </h3>
                       </div>
                     </div>
                   </div>
-                  <div className="group relative">
-                    <h3
-                      className={`${
-                        viewType === "single" ? "line-clamp-1" : "line-clamp-2"
-                      } text-white font-semibold text-2xl `}
-                    >
-                      <Link href={`/blogs/${post.id}`}>{post.title}</Link>
-                    </h3>
-                  </div>
                 </div>
-              </div>
-            </div>
-          );
-        })}
-      </div>
-      {/* Pagination */}
-      <div className="flex justify-center items-center">
-        {currentPage > 1 && (
-          <button
-            className="mx-1 px-2.5 py-1 border rounded text-sm dark:text-white"
-            onClick={() => handlePageChange(currentPage - 1)}
-          >
-            Previous
-          </button>
-        )}
-        {paginationButtons.map((button, index) =>
-          button === "..." ? (
-            <span key={index} className="mx-1 px-2.5 py-1 text-sm">
-              ...
-            </span>
-          ) : (
-            <button
-              key={button}
-              className={`mx-1 px-2.5 py-1 border rounded text-sm dark:text-white ${
-                currentPage === button
-                  ? "bg-black text-white border-themeColor"
-                  : "hover:bg-themeColor/20 hover:border-themeColor"
-              }`}
-              onClick={() => handlePageChange(button)}
-            >
-              {button}
-            </button>
-          )
-        )}
-        {currentPage < totalPages && (
-          <button
-            className="mx-1 px-2.5 py-1 border rounded text-sm dark:text-white text-black"
-            onClick={() => handlePageChange(currentPage + 1)}
-          >
-            Next
-          </button>
-        )}
-      </div>
+              );
+            })}
+          </div>
+
+          {/* Pagination */}
+          <div className="flex justify-center items-center">
+            {currentPage > 1 && (
+              <button
+                className="mx-1 px-2.5 py-1 border rounded text-sm dark:text-white hover:bg-gray-100 transition-colors"
+                onClick={() => handlePageChange(currentPage - 1)}
+                aria-label="Previous page"
+              >
+                Previous
+              </button>
+            )}
+            {paginationButtons.map((button, index) =>
+              button === "..." ? (
+                <span key={index} className="mx-1 px-2.5 py-1 text-sm">
+                  ...
+                </span>
+              ) : (
+                <button
+                  key={button}
+                  className={`mx-1 px-2.5 py-1 border rounded text-sm dark:text-white transition-colors ${
+                    currentPage === button
+                      ? "bg-black text-white border-themeColor"
+                      : "hover:bg-themeColor/20 hover:border-themeColor"
+                  }`}
+                  onClick={() => handlePageChange(button)}
+                  aria-label={`Go to page ${button}`}
+                >
+                  {button}
+                </button>
+              )
+            )}
+            {currentPage < totalPages && (
+              <button
+                className="mx-1 px-2.5 py-1 border rounded text-sm dark:text-white hover:bg-gray-100 transition-colors"
+                onClick={() => handlePageChange(currentPage + 1)}
+                aria-label="Next page"
+              >
+                Next
+              </button>
+            )}
+          </div>
+        </>
+      )}
     </div>
   );
 };
